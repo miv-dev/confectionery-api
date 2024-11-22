@@ -1,17 +1,16 @@
 [versions]
-ktor-version = "3.0.1"
+ktor-version = "2.3.12"
 kotlin-version = "2.0.21"
 logback-version = "1.4.14"
 
 exposed-version = "0.55.0"
-postgres-version = "42.5.1"
+postgres-version = "42.7.2"
 hikari-version = "5.0.1"
-
 koin-bom = "4.0.0"
 
 [libraries]
 ktor-server-auth = { module = "io.ktor:ktor-server-auth-jvm", version.ref = "ktor-version" }
-ktor-server-auth-jwt = { module = "io.ktor:ktor-server-auth-jwt-jvm", version.ref = "ktor-version" }
+ktor-server-session = { module = "io.ktor:ktor-server-sessions-jvm", version.ref = "ktor-version" }
 ktor-server-cors = { module = "io.ktor:ktor-server-cors", version.ref = "ktor-version" }
 ktor-server-core = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktor-version" }
 ktor-server-host-common = { module = "io.ktor:ktor-server-host-common-jvm", version.ref = "ktor-version" }
@@ -22,8 +21,11 @@ ktor-server-netty = { module = "io.ktor:ktor-server-netty-jvm", version.ref = "k
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback-version" }
 ktor-server-status-pages = { module = "io.ktor:ktor-server-status-pages-jvm", version.ref = "ktor-version" }
 ktor-server-config-yaml = { module = "io.ktor:ktor-server-config-yaml-jvm", version.ref = "ktor-version"}
+ktor-server-swagger = { module = "io.ktor:ktor-server-swagger", version.ref = "ktor-version"}
 ktor-server-test-host = { module = "io.ktor:ktor-server-test-host-jvm", version.ref = "ktor-version" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin-version" }
+
+
 
 exposed-core = { group = "org.jetbrains.exposed", name = "exposed-core", version.ref = "exposed-version" }
 exposed-jdbc = { group = "org.jetbrains.exposed", name = "exposed-jdbc", version.ref = "exposed-version" }
@@ -34,7 +36,7 @@ db-postgres = { module = "org.postgresql:postgresql", version.ref = "postgres-ve
 
 koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin-bom" }
 koin-core = { module = "io.insert-koin:koin-core" }
-koin-ktor = { module = "io.insert-koin:koin-ktor"}
+koin-ktor = { module = "io.insert-koin:koin-ktor" }
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-version" }
 ktor-server = { id = "io.ktor.plugin", version.ref = "ktor-version" }

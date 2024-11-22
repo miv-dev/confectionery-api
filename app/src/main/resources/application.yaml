@@ -1,0 +1,25 @@
+ktor:
+  application:
+    modules:
+      - ApplicationKt.module
+  deployment:
+    port: "$PORT:8080"
+
+  development: "$DEVELOPMENT:false"
+
+database:
+  url: "$DB_URL"
+  password:
+    text: "$?DB_PASSWORD"
+    file: "$?DB_PASSWORD_FILE"
+  username:
+    text: "$?DB_USERNAME"
+    file: "$?DB_USERNAME_FILE"
+
+session:
+  secret:
+    text: "$?SESSION_SECRET"
+    file: "$?SESSION_SECRET_FILE"
+  encrypt:
+    text: "$?SESSION_ENCRYPT"
+    file: "$?SESSION_ENCRYPT_FILE"

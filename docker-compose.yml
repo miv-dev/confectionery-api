@@ -1,0 +1,27 @@
+services:
+  backend:
+    build: .
+    image: mivdev/confectionery-api:latest
+    ports:
+      - "8080:8080"
+    platform: linux/amd64
+    secrets:
+      - db-username
+      - db-password
+      - session-secret
+      - session-encrypt
+    environment:
+      - DB_USERNAME_FILE=/run/secrets/db-username
+      - DB_PASSWORD_FILE=/run/secrets/db-password
+      - DB_URL=jdbc:postgresql://176.124.213.100:54333/confectionery_db
+      - SESSION_SECRET_FILE=/run/secrets/session-secret
+      - SESSION_ENCRYPT_FILE=/run/secrets/session-encrypt
+secrets:
+    db-username:
+        file: ./prod-conf/secrets/DB_USERNAME
+    db-password:
+        file: ./prod-conf/secrets/DB_PASSWORD
+    session-secret:
+        file: ./prod-conf/secrets/SESSION_SECRET
+    session-encrypt:
+        file: ./prod-conf/secrets/SESSION_SECRET

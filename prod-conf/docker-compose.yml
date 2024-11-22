@@ -1,0 +1,59 @@
+services:
+  backend:
+    image: mivdev/confectionery-api:latest
+    container_name: confectionery_api_container
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    secrets:
+      - db-username
+      - db-password
+      - session-secret
+      - session-encrypt
+    environment:
+      - DB_USERNAME_FILE=/run/secrets/db-username
+      - DB_PASSWORD_FILE=/run/secrets/db-password
+      - DB_URL=jdbc:postgresql://db:5432/confectionery_db
+      - SESSION_SECRET_FILE=/run/secrets/session-secret
+      - SESSION_ENCRYPT_FILE=/run/secrets/session-encrypt
+  flyway:
+    image: flyway/flyway:latest
+    command: -schemas=public migrate
+    volumes:
+      - ./flyway/conf:/flyway/conf
+      - ./flyway/sql:/flyway/sql
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: postgres
+
+    secrets:
+      - db-username
+      - db-password
+    environment:
+      POSTGRES_DB: confectionery_db
+      POSTGRES_USER_FILE: /run/secrets/db-username
+      POSTGRES_PASSWORD_FILE: /run/secrets/db-password
+    container_name: confectionery_db_container
+    ports:
+      - "54333:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U server -d confectionery_db" ]
+      interval: 1s
+volumes:
+  pg-data: { }
+
+secrets:
+  db-username:
+    file: ./secrets/DB_USERNAME
+  db-password:
+    file: ./secrets/DB_PASSWORD
+  session-secret:
+    file: ./secrets/SESSION_SECRET
+  session-encrypt:
+    file: ./secrets/SESSION_SECRET
