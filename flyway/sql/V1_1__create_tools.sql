@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS suppliers
 (
-    id            INTEGER PRIMARY KEY,
+    id            SERIAL PRIMARY KEY,
     name          VARCHAR(255) UNIQUE NOT NULL,
     address       TEXT,
     delivery_time INTEGER
@@ -8,14 +8,14 @@ CREATE TABLE IF NOT EXISTS suppliers
 
 CREATE TABLE IF NOT EXISTS tool_types
 (
-    id   INTEGER PRIMARY KEY,
+    id   SERIAL PRIMARY KEY,
     name VARCHAR(255) UNIQUE NOT NULL
 );
 
 
 CREATE TABLE IF NOT EXISTS tools
 (
-    id            INTEGER PRIMARY KEY,
+    id            SERIAL PRIMARY KEY,
     name          VARCHAR(255) UNIQUE NOT NULL,
     description   TEXT,
     supplier_id   INTEGER REFERENCES suppliers ON DELETE CASCADE,

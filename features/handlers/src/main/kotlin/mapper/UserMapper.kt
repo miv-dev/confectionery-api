@@ -2,6 +2,7 @@ package mapper
 
 import dto.UserDTO
 import user.User
+import java.util.UUID
 
 fun User.toDto() = UserDTO(
     id = id,

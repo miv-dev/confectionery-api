@@ -10,6 +10,7 @@ repositories {
 dependencies {
     implementation(project(":features:repositories"))
     implementation(project(":features:domain"))
+    implementation(project(":features:utils"))
 
 
     implementation(libs.ktor.server.core)
