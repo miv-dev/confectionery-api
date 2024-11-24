@@ -1,4 +1,4 @@
-package com.miv.utils
+package serializers
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind

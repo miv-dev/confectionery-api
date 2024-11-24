@@ -1,9 +1,7 @@
 package dto
 
-import com.miv.utils.LocalDateSerializer
-import jdk.jfr.Description
+import serializers.LocalDateSerializer
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JsonClassDiscriminator
 import tool.Wear
 import java.time.LocalDate
 

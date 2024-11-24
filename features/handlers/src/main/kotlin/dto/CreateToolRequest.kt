@@ -1,6 +1,6 @@
 package dto
 
-import com.miv.utils.LocalDateSerializer
+import serializers.LocalDateSerializer
 import kotlinx.serialization.Serializable
 import tool.Wear
 import java.time.LocalDate

@@ -3,6 +3,8 @@ package routes
 import ToolHandler
 import dto.CreateToolRequest
 import dto.ToolDTO
+import dto.ToolTypeDTO
+import io.github.smiley4.ktorswaggerui.data.array
 import io.github.smiley4.ktorswaggerui.dsl.routing.get
 import io.github.smiley4.ktorswaggerui.dsl.routing.post
 import io.ktor.client.utils.EmptyContent.status
@@ -24,7 +26,7 @@ fun Route.toolRouting() {
             response {
                 HttpStatusCode.OK to {
                     description = "List of tools"
-                    body<List<ToolDTO>>()
+                    body(array<ToolDTO>())
                 }
             }
         }) {
@@ -35,7 +37,7 @@ fun Route.toolRouting() {
             response {
                 HttpStatusCode.OK to {
                     description = "List of tool types"
-                    body<List<ToolType>>()
+                    body(array<ToolTypeDTO>())
                 }
             }
         }) {
