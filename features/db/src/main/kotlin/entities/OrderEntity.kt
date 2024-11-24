@@ -1,6 +1,7 @@
 
 package entities
 
+import order.Order
 import org.jetbrains.exposed.dao.UUIDEntity
 import org.jetbrains.exposed.dao.UUIDEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
@@ -17,4 +18,15 @@ class OrderEntity(id: EntityID<UUID>) : UUIDEntity(id) {
     var plannedCompletionDate by Orders.plannedCompletionDate
     var manager by UserEntity optionalReferencedOn Orders.manager
 
+
+    fun toModel() = Order(
+        id = id.value,
+        number = id.value.toString().substring(0, 3),
+        orderDate = orderDate,
+        status = status,
+        customer = customer.toModel(),
+        total = total,
+        plannedCompletionDate = plannedCompletionDate,
+        manager = manager?.toModel()
+    )
 }
