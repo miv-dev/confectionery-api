@@ -1,12 +1,13 @@
 package tables
 
+import order.OrderStatus
 import org.jetbrains.exposed.dao.id.UUIDTable
 import org.jetbrains.exposed.sql.ReferenceOption
 import org.jetbrains.exposed.sql.javatime.date
 
 object Orders: UUIDTable("orders") {
     val orderDate = date("order_date")
-    val status = integer("status").default(0)
+    val status = enumeration<OrderStatus>("status").default(OrderStatus.NEW)
     val customer = reference("customer_id", Users, onDelete = ReferenceOption.CASCADE)
     val total = decimal("total", 10, 2).transform({ it.toDouble() }, { it.toBigDecimal() })
     val plannedCompletionDate = date("planned_completion_date").nullable()
